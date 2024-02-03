@@ -7,3 +7,6 @@
 [submodule "SIBR_viewers"]
 	path = SIBR_viewers
 	url = https://gitlab.inria.fr/sibr/sibr_core.git
+[submodule "diff/third_party/glm"]
+	path = diff/third_party/glm
+	url = https://github.com/g-truc/glm
