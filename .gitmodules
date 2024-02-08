@@ -10,3 +10,6 @@
 [submodule "diff/third_party/glm"]
 	path = diff/third_party/glm
 	url = https://github.com/g-truc/glm
+[submodule "diff/third_party/cuco"]
+	path = diff/third_party/cuco
+	url = git@github.com:NVIDIA/cuCollections.git

@@ -31,6 +31,9 @@ except ImportError:
 from lpipsPyTorch import lpips, lpips_func
 import wandb
 from utils.cluster_manager import ClusterStateManager
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 csm = ClusterStateManager()
 
@@ -114,6 +117,12 @@ def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoi
 
         render_pkg = render(viewpoint_cam, gaussians, pipe, bg)
         image, viewspace_point_tensor, visibility_filter, radii = render_pkg["render"], render_pkg["viewspace_points"], render_pkg["visibility_filter"], render_pkg["radii"]
+        n_contrib = render_pkg['n_contrib']
+
+        if (iteration - 1) % 557 == 0:
+            sns.displot(n_contrib.detach().cpu())
+            plt.savefig(f"/home/wen/tmp/n_contrib_{iteration:06d}.jpg")
+            plt.close()
 
         # Loss
         gt_image = viewpoint_cam.original_image.cuda()

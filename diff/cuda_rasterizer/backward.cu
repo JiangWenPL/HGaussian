@@ -13,6 +13,19 @@
 #include "auxiliary.h"
 #include <cooperative_groups.h>
 #include <cooperative_groups/reduce.h>
+// #include <cuco/static_set.cuh>
+
+// #include <thrust/device_vector.h>
+// #include <thrust/functional.h>
+// #include <thrust/logical.h>
+// #include <thrust/copy.h>
+// #include <thrust/fill.h>
+// #include <thrust/sequence.h>
+
+// #include <cooperative_groups.h>
+
+// #include <cstddef>
+// #include <iostream>
 namespace cg = cooperative_groups;
 
 // Backward pass for conversion of spherical harmonics to RGB for
@@ -1095,6 +1108,7 @@ renderCUDAFused(
 
 #define acc_func atomicAdd
 // #define acc_func atomicAddSquare
+// TODO: insert this vector of gradients into a thrust vector
 
 			for(int ch = 0; ch < C; ch++)
 			{

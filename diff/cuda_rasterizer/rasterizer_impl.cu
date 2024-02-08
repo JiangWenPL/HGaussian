@@ -217,6 +217,7 @@ int CudaRasterizer::Rasterizer::forward(
 	const bool prefiltered,
 	float* out_color,
 	int* radii,
+	int32_t* n_contrib,
 	bool debug)
 {
 	const float focal_y = height / (2.0f * tan_fovy);
@@ -331,6 +332,11 @@ int CudaRasterizer::Rasterizer::forward(
 		imgState.n_contrib,
 		background,
 		out_color), debug)
+	
+	// Save a copy of n_contrib
+	if (n_contrib != nullptr){
+		CHECK_CUDA(cudaMemcpy(n_contrib, imgState.n_contrib, sizeof(int32_t) * height * width, cudaMemcpyDeviceToDevice), debug);
+	}
 
 	return num_rendered;
 }
